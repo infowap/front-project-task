@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Tarefas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-dark text-white">
+    <div class="container mt-4 p-4">
+        <h1 class="text-center">Gerenciador de Tarefas</h1>
+    
+        <div class="form-group">
+            <label for="filtroStatus">Filtrar por Status:</label>
+            <select id="filtroStatus" class="form-control" onchange="carregarTarefas()">
+                <option value="">Todos</option>
+                <option value="PENDENTE">Pendente</option>
+                <option value="EXECUTANDO">Executando</option>
+                <option value="CONCLUIDA">Concluída</option>
+            </select>
+        </div>
+    
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalTarefa" onclick="abrirModalCriar()">Adicionar Tarefa</button>
+        
+        <!-- Tabela de Tarefas -->
+        <table class="table table-hover table-dark table-bordered-1 mt-4">
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Data Início</th>
+                    <th>Data Fim</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="listaTarefas">
+                <!-- As tarefas serão inseridas aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal Criar/Editar Tarefa -->
+    <div class="modal fade" id="modalTarefa" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Adicionar/Editar Tarefa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="idTarefa">
+                    <div class="form-group">
+                        <label for="descricao">Descrição:</label>
+                        <input type="text" id="descricao" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataInicio">Data de Início:</label>
+                        <input type="date" id="dataInicio" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataFim">Data de Fim:</label>
+                        <input type="date" id="dataFim" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select id="status" class="form-control">
+                            <option value="PENDENTE">Pendente</option>
+                            <option value="EXECUTANDO">Executando</option>
+                            <option value="CONCLUIDA">Concluída</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="salvarTarefa">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmar Exclusão -->
+    <div class="modal fade" id="modalDeletar" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmar Exclusão</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza que deseja excluir esta tarefa?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmarDeletar">Deletar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
