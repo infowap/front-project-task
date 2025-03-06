@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8080/api/tarefas';
+const API_URL = process.env.URL_API_TASK_MANAGER'/api/tarefas';
 
 document.addEventListener('DOMContentLoaded', () => {
     carregarTarefas();
