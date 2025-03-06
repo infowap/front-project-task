@@ -1,4 +1,4 @@
-const API_URL = process.env.URL_API_TASK_MANAGER'/api/tarefas';
+const API_URL = 'https://back-project-task.onrender.com/api/tarefas';
 
 document.addEventListener('DOMContentLoaded', () => {
     carregarTarefas();
