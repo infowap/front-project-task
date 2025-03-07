@@ -61,14 +61,22 @@ function salvarTarefa() {
         dataFim: document.getElementById('dataFim').value,
         status: document.getElementById('status').value
     };
+    const tarefaAtualizada ={
+        id: id,
+        descricao: document.getElementById('descricao').value,
+        dataInicio: document.getElementById('dataInicio').value,
+        dataFim: document.getElementById('dataFim').value,
+        status: document.getElementById('status').value
+    }
     
     const method = id ? 'PUT' : 'POST';
     const url = id ? `${API_URL}/${id}` : API_URL;
+    const tarefaRequest = id ? tarefaAtualizada : tarefa;
     
     fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(tarefa)
+        body: JSON.stringify(tarefaRequest)
     }).then(() => {
         $('#modalTarefa').modal('hide');
         carregarTarefas();
