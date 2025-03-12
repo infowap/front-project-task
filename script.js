@@ -36,7 +36,18 @@ function carregarTarefas() {
         });
 }
 
+function titleForm(action) {
+    const titleForm = document.getElementById('titleForm');
+    
+    if (action === 'criar') {
+        titleForm.innerHTML = 'Adicionar Tarefa';
+    } else if (action === 'editar') {
+        titleForm.innerHTML = 'Editar Tarefa';
+    }
+}
+
 function abrirModalCriar() {
+    titleForm('criar');
     document.getElementById('idTarefa').value = '';
     document.getElementById('descricao').value = '';
     document.getElementById('dataInicio').value = '';
@@ -45,6 +56,7 @@ function abrirModalCriar() {
 }
 
 function abrirModalEditar(id, descricao, dataInicio, dataFim, status) {
+    titleForm('editar');
     document.getElementById('idTarefa').value = id;
     document.getElementById('descricao').value = descricao;
     document.getElementById('dataInicio').value = dataInicio;
